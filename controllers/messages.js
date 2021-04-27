@@ -29,12 +29,12 @@ exports.showFormPage = (req, res) => {
     res.render('formNewMessage.ejs');
 }
 
-exports.postFormParge = (req, res) => {
+exports.postFormParge = async (req, res) => {
 
     const content = req.body.message;
     const type = req.body.type;
 
-    Message.save(content, type);
+    await Message.save(content, type);
    
     res.redirect('/');
 }
