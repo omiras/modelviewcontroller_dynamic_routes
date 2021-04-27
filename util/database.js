@@ -1,35 +1,24 @@
-const mongodb = require('mongodb');
-const MongoClient = mongodb.MongoClient;
+// Crear un custom module que ofrezca
+
+// 1. La mecanismos para conectarse a la base de datos
+// 2. La posibilidad de recuperar la conexión a base de datos
+// para realizar operaciones
+const MongoClient = require('mongodb').MongoClient
+const ObjectId = require('mongodb').ObjectId
 
 let _db;
 
-const mongoConnect = (callback) => {
-
-    MongoClient.connect('mongodb+srv://root:root@cluster0-lo8dg.mongodb.net/test?retryWrites=true&w=majority')
-        .then(client => {
-            console.log('<== Conectados a la base de datos correctamente ==>');
-            _db = client.db();
-            callback(); // The result will be the client Object of MongoDB
-        })
-        .catch(err => {
-            console.log("Error al conectar a la BBDD: ", err);
-            throw err;
-        });
-            
+exports.mongoConnect = async (uri, dbName, cb) => {
+    const connect = await MongoClient.connect(uri)
+    _db = connect.db(dbName)
+    cb()
 }
 
-const getDb = () => {
-    if (_db) {
-        return _db;
-    }
-
-    throw 'No database found!';
+exports.getDB = () => {
+    return _db
 }
 
-const getMongoId = (id) => {
-    return mongodb.ObjectID(id);
+exports.ObjectId = (id) => {
+    return new ObjectId(id)
 }
 
-exports.mongoConnect = mongoConnect;
-exports.getDb = getDb;
-exports.getMongoId = getMongoId;

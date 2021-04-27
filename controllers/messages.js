@@ -18,8 +18,8 @@ exports.showDetailsPage = (req, res) => {
     
 }
 
-exports.showMainPage = (req, res) => {
-    const allMessages = Message.getAllMessages("desc");
+exports.showMainPage = async (req, res) => {
+    const allMessages = await Message.fetchAll();
     res.render('index', {
         messages: allMessages
     });

@@ -1,3 +1,5 @@
+const db = require('../util/database').getDB()
+
 module.exports = class Message {
     constructor(content, type) {
         this.content = content;
@@ -6,9 +8,15 @@ module.exports = class Message {
     }
 
 
-    static save(content, type) {}
+    static async save(content, type) {
+        const messages = db.collection('messages')
 
-    static fetchAll() {}
+
+    }
+
+    static fetchAll() {
+        return []
+    }
 
     static fetchById(id) {}
 
