@@ -2,7 +2,7 @@
 
 We want to implement the model of this Model View Controller app using MongoDB as a database. Find the name of the database contained in the connection string. The collection to use is up to you, but I recommend to use a collection named **messages**
 
-![image](https://oscarm.tinytake.com/tt/NDM4NjkwNl8xMzg1MTcyMQ)
+![image](https://oscarm.tinytake.com/media/d35c49?filename=1592471077101_TinyTake18-06-2020-11-04-06_637280678791889350.png&sub_type=thumbnail_preview&type=attachment&width=779&height=463&&salt=NDM4NjkwNl8xMzg1MTcyMQ)
 
 ## Methods to implement
 
