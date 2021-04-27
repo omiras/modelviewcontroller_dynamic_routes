@@ -17,5 +17,5 @@ app.use(messagesRoutes);
 
 app.use(errorController.get404);
 
-mongoConnect(app.listen(3000))
+mongoConnect(uri, "messages", app.listen(3000))
 
