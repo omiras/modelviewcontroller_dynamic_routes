@@ -34,8 +34,7 @@ exports.postFormParge = (req, res) => {
     const content = req.body.message;
     const type = req.body.type;
 
-    const message = new Message(content, type);
-    Message.addNewMessageToDatabase(message);
+    Message.save(content, type);
    
     res.redirect('/');
 }

@@ -7,7 +7,7 @@ app.set('view engine', 'ejs');
 
 const errorController = require('./controllers/error');
 const messagesRoutes = require('./routes/messages');
-const { mongoConnect } = require('./util/database');
+const database = require('./util/database');
 
 
 app.use(express.urlencoded({ extended: false }));
@@ -17,5 +17,8 @@ app.use(messagesRoutes);
 
 app.use(errorController.get404);
 
-mongoConnect(uri, "messages", app.listen(3000))
+// Primero tenemos que conectarnos correctamente a la base de datos. Después, ya podemos empezar a escuchar por el puerto 3000
+database.mongoConnect(uri, 'messages', ()=> {
+    app.listen(3000);
+})
 

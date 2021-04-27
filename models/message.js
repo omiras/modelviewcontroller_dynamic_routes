@@ -1,4 +1,4 @@
-const db = require('../util/database').getDB()
+const db = require('../util/database')
 
 module.exports = class Message {
     constructor(content, type) {
@@ -9,9 +9,12 @@ module.exports = class Message {
 
 
     static async save(content, type) {
-        const messages = db.collection('messages')
-
-
+       
+        const messages = db.getDB().collection('messages')
+        const message = new Message(content, type)
+        const result = await messages.insertOne(message)
+        
+        console.log("Id del documento insertado: ", result.id)
     }
 
     static fetchAll() {
